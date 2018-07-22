@@ -1,0 +1,90 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminNav.master.cs" Inherits="TransitApp.Vistas.AdminNav" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ADMINISTRADOR</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="../css/pager.css" rel="stylesheet" />
+    <link href="../css/starter-template.css" rel="stylesheet" />
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+
+
+
+<body style="background-image:url(../img/bici1.jpg) ;  background-repeat:no-repeat;  width: inherit; height: inherit; margin:inherit">
+
+    <form id="form1" runat="server"> 
+
+
+
+
+         <nav class="navbar navbar-fixed-top navbar-inverse" style="background-color: #ff0000;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+         <img class="navbar-brand"  src="../img/Logo_xs-2.png" />
+        <a class="navbar-brand" href="../Vistas/PrincipalAdmin.aspx"><strong> 
+                    <asp:Label ID="lbRol" runat="server" ForeColor="White" Text=""></asp:Label> 
+                    <asp:Label ID="lbNombre" runat="server" ForeColor="White" Text=""></asp:Label></strong>
+        </a>
+
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        
+    </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item"><a href="../Vistas/GestionAlumnos.aspx" class="navbar-link"><strong> GESTION ALUMNOS</strong></a></li>
+                        <li class="nav-item"><a href="../Vistas/GestionPersonal.aspx" class="navbar-link"><strong>GESTION PERSONAL</strong></a></li>
+                        <li class="nav-item"><a href="../Vistas/GestionBici.aspx" class="navbar-link"><strong>GESTION BICICLETAS</strong></a></li>
+                        <li class="nav-item"><a href="../Vistas/InformesAdmin.aspx" class="navbar-link"><strong>INFORMES</strong></a></li>
+                        <li><asp:LinkButton runat="server" ID="btnSalir" ForeColor="White" OnClick="btnSalir_Click"><strong>SALIR<span class="glyphicon glyphicon-off" aria-hidden="true"></span></strong></asp:LinkButton></li>
+        </ul>
+           </div></div></nav>
+
+
+
+
+
+   
+        <asp:ScriptManager ID="Scriptmanager1" EnableHistory="false" EnableSecureHistoryState="false" runat="server" />
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+               
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+
+
+                    </asp:ContentPlaceHolder>
+                
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+          <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery-slim.min.js"><\/script>')</script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+</body>
+</html>

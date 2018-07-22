@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TransitAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="RutA" />
+          </Key>
+          <Property Name="RutA" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Clave" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="RutA" />
+          </Key>
+          <Property Name="RutA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Carrera" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Jornada" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IDBicicleta" Type="int" Nullable="false" />
+          <Property Name="IDBicicletaAnterior" Type="int" />
+          <Property Name="HoraIngreso" Type="datetime" />
+          <Property Name="HoraSalida" Type="datetime" />
+          <Property Name="Comentario" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Bicicleta">
+          <Key>
+            <PropertyRef Name="IDBicicleta" />
+          </Key>
+          <Property Name="IDBicicleta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Guardia">
+          <Key>
+            <PropertyRef Name="RutG" />
+          </Key>
+          <Property Name="RutG" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Clave" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="RutU" />
+          </Key>
+          <Property Name="Rol" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="RutU" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comentary" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Administra__RutA__32AB8735">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="RutU" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="RutA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Administra__RutA__3B40CD36">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="RutU" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="RutA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Guardia__RutG__3493CFA7">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Guardia" Type="Self.Guardia" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="RutU" />
+            </Principal>
+            <Dependent Role="Guardia">
+              <PropertyRef Name="RutG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Guardia__RutG__3D2915A8">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Guardia" Type="Self.Guardia" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="RutU" />
+            </Principal>
+            <Dependent Role="Guardia">
+              <PropertyRef Name="RutG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TransitAppModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bicicleta" EntityType="Self.Bicicleta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guardia" EntityType="Self.Guardia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comentario" EntityType="Self.Comentario" Schema="transit1_fernandotroncoso94" store:Type="Tables" />
+          <AssociationSet Name="FK__Administra__RutA__32AB8735" Association="Self.FK__Administra__RutA__32AB8735">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Administra__RutA__3B40CD36" Association="Self.FK__Administra__RutA__3B40CD36">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Guardia__RutG__3493CFA7" Association="Self.FK__Guardia__RutG__3493CFA7">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Guardia" EntitySet="Guardia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Guardia__RutG__3D2915A8" Association="Self.FK__Guardia__RutG__3D2915A8">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Guardia" EntitySet="Guardia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TransitAppModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="transit1_transitappEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrador" EntityType="TransitAppModel.Administrador" />
+          <EntitySet Name="Alumno" EntityType="TransitAppModel.Alumno" />
+          <EntitySet Name="Bicicleta" EntityType="TransitAppModel.Bicicleta" />
+          <EntitySet Name="Guardia" EntityType="TransitAppModel.Guardia" />
+          <EntitySet Name="Usuario" EntityType="TransitAppModel.Usuario" />
+          <AssociationSet Name="FK__Administra__RutA__182C9B23" Association="TransitAppModel.FK__Administra__RutA__182C9B23">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumno__IDBicicl__1920BF5C" Association="TransitAppModel.FK__Alumno__IDBicicl__1920BF5C">
+            <End Role="Bicicleta" EntitySet="Bicicleta" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Guardia__RutG__1A14E395" Association="TransitAppModel.FK__Guardia__RutG__1A14E395">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Guardia" EntitySet="Guardia" />
+          </AssociationSet>
+          <EntitySet Name="Comentario" EntityType="TransitAppModel.Comentario" />
+        </EntityContainer>
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="RutA" />
+          </Key>
+          <Property Name="RutA" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Usuario" Relationship="TransitAppModel.FK__Administra__RutA__182C9B23" FromRole="Administrador" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="RutA" />
+          </Key>
+          <Property Name="RutA" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Carrera" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="Jornada" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="IDBicicleta" Type="Int32" Nullable="false" />
+          <Property Name="IDBicicletaAnterior" Type="Int32" />
+          <Property Name="HoraIngreso" Type="DateTime" Precision="3" />
+          <Property Name="HoraSalida" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Bicicleta" Relationship="TransitAppModel.FK__Alumno__IDBicicl__1920BF5C" FromRole="Alumno" ToRole="Bicicleta" />
+          <Property Type="String" Name="Comentario" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Bicicleta">
+          <Key>
+            <PropertyRef Name="IDBicicleta" />
+          </Key>
+          <Property Name="IDBicicleta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Imagen" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Alumno" Relationship="TransitAppModel.FK__Alumno__IDBicicl__1920BF5C" FromRole="Bicicleta" ToRole="Alumno" />
+        </EntityType>
+        <EntityType Name="Guardia">
+          <Key>
+            <PropertyRef Name="RutG" />
+          </Key>
+          <Property Name="RutG" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="TransitAppModel.FK__Guardia__RutG__1A14E395" FromRole="Guardia" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="RutU" />
+          </Key>
+          <Property Name="Rol" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="RutU" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Administrador" Relationship="TransitAppModel.FK__Administra__RutA__182C9B23" FromRole="Usuario" ToRole="Administrador" />
+          <NavigationProperty Name="Guardia" Relationship="TransitAppModel.FK__Guardia__RutG__1A14E395" FromRole="Usuario" ToRole="Guardia" />
+        </EntityType>
+        <Association Name="FK__Administra__RutA__182C9B23">
+          <End Role="Usuario" Type="TransitAppModel.Usuario" Multiplicity="1" />
+          <End Role="Administrador" Type="TransitAppModel.Administrador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="RutU" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="RutA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumno__IDBicicl__1920BF5C">
+          <End Role="Bicicleta" Type="TransitAppModel.Bicicleta" Multiplicity="1" />
+          <End Role="Alumno" Type="TransitAppModel.Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicicleta">
+              <PropertyRef Name="IDBicicleta" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="IDBicicleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Guardia__RutG__1A14E395">
+          <End Role="Usuario" Type="TransitAppModel.Usuario" Multiplicity="1" />
+          <End Role="Guardia" Type="TransitAppModel.Guardia" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="RutU" />
+            </Principal>
+            <Dependent Role="Guardia">
+              <PropertyRef Name="RutG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comentary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TransitAppModelStoreContainer" CdmEntityContainer="transit1_transitappEntities">
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="TransitAppModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="RutA" ColumnName="RutA" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alumno">
+            <EntityTypeMapping TypeName="TransitAppModel.Alumno">
+              <MappingFragment StoreEntitySet="Alumno">
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="RutA" ColumnName="RutA" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Carrera" ColumnName="Carrera" />
+                <ScalarProperty Name="Jornada" ColumnName="Jornada" />
+                <ScalarProperty Name="IDBicicleta" ColumnName="IDBicicleta" />
+                <ScalarProperty Name="IDBicicletaAnterior" ColumnName="IDBicicletaAnterior" />
+                <ScalarProperty Name="HoraIngreso" ColumnName="HoraIngreso" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bicicleta">
+            <EntityTypeMapping TypeName="TransitAppModel.Bicicleta">
+              <MappingFragment StoreEntitySet="Bicicleta">
+                <ScalarProperty Name="IDBicicleta" ColumnName="IDBicicleta" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guardia">
+            <EntityTypeMapping TypeName="TransitAppModel.Guardia">
+              <MappingFragment StoreEntitySet="Guardia">
+                <ScalarProperty Name="RutG" ColumnName="RutG" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="TransitAppModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="RutU" ColumnName="RutU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comentario">
+            <EntityTypeMapping TypeName="TransitAppModel.Comentario">
+              <MappingFragment StoreEntitySet="Comentario">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Comentary" ColumnName="Comentary" />
+                <ScalarProperty Name="IdComentario" ColumnName="IdComentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

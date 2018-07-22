@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cce4db8f646444189250cb53c32083ef" Name="Diagrama1">
+        <EntityTypeShape EntityType="TransitAppModel.Administrador" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransitAppModel.Alumno" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransitAppModel.Bicicleta" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransitAppModel.Guardia" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransitAppModel.Usuario" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="TransitAppModel.FK__Administra__RutA__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="TransitAppModel.FK__Alumno__IDBicicl__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="TransitAppModel.FK__Guardia__RutG__1A14E395" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TransitAppModel.Comentario" Width="1.5" PointX="5.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
